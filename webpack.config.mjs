@@ -6,13 +6,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default {
   mode: process.env.NODE_ENV || 'production',
-  target: 'node', // Ensures Webpack is bundling for Node.js
+  target: 'node',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
-  externals: [webpackNodeExternals()], // Exclude Node.js dependencies
+  externals: [webpackNodeExternals()],
   module: {
     rules: [
       {

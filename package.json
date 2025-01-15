@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "node dist/bundle.js",
-    "serve": "npm run build && npm start",
-    "dev": "concurrently \"npx webpack --watch\" \"npm run dev-server\"",
-    "dev-server": "babel-node src/index.js"
+    "build": "webpack",
+  "start": "node dist/bundle.js"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +29,7 @@
     "cors": "^2.8.5",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.5",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "dotenv": "^16.4.7"
   }
 }
