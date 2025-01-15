@@ -1,31 +1,27 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import nodeExternals from 'webpack-node-externals';
+import webpackNodeExternals from 'webpack-node-externals';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default {
-  target: 'node', // Target Node.js environment
-  entry: './src/index.js', // Entry point for your Express API
+  mode: process.env.NODE_ENV || 'production',
+  target: 'node', // Ensures Webpack is bundling for Node.js
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'), // Output directory for bundled code
-    filename: 'bundle.js', // Bundle file for the API
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
-  externals: [nodeExternals()], // Exclude node_modules from bundling (it’s already available in the environment)
+  externals: [webpackNodeExternals()], // Exclude Node.js dependencies
   module: {
     rules: [
       {
-        test: /\.js$/, // Apply Babel loader to all JS files
-        exclude: /node_modules/, // Exclude node_modules
-        use: 'babel-loader', // Use Babel to transpile the code
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
     ],
-  },stats: {
-    errorDetails: true,  // Show detailed error/warning information
   },
-  plugins: [
-    ,
-  ],
-  mode: process.env.NODE_ENV || 'development', // Set mode to development or production
 };
